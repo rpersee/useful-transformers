@@ -17,6 +17,22 @@ If you don't have a wav file handy, running the above command will transcribe an
     $ taskset -c 4-7 python -m useful_transformers.transcribe_wav
     Ever tried, ever failed. No matter, try again. Fail again. Fail better.
 
+### Try in Docker
+
+You can also run the transcription in Docker with:
+```bash
+$ docker build -t useful-transformers .
+$ docker run --rm -t \
+    --device /dev/dri:/dev/dri \
+    -v "$(PWD)":/work useful-transformers \
+    /work/<wav_file in CWD>
+```
+
+> **Note:** You can use `ffmpeg` to convert your audio file to a mono WAV file with a sample rate of 16 kHz:
+> ```bash
+> ffmpeg -i <input.*> -ac 1 -ar 16000 -f wav <output.wav>
+> ```
+
 ## Performance
 
 ![Performance comparison](https://github.com/usefulsensors/useful-transformers/blob/main/examples/whisper/assets/perf-comparison.png)
