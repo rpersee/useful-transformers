@@ -1,5 +1,6 @@
 #include "profiler.h"
 
+#include <algorithm>
 #include <cassert>
 #include <cmath>
 #include <iomanip>
